@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[移动端手势库Hammer.js]]></title>
+      <url>%2F2016%2F12%2F18%2F%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E5%8A%BF%E5%BA%93Hammer-js%2F</url>
+      <content type="text"><![CDATA[Github Hammer.js是一个开源的，轻量级的javascript库，它可以在不需要依赖其他东西的情况下识别触摸，鼠标事件。 使用引入hammer.js到文件中，并创建一个新的实例：1234var hammer = new Hammer(Element, Options);hammer.on(&apos;tap&apos;, function(ev) &#123; console.log(ev);&#125;); hammerjs内置多种手势识别器，包括 tap：轻触，与click相比有300ms的延迟 doubletap：双点击 press：按住,最小按压时间为500毫秒 pan：拖动平移 panstart：拖动开始 panmove：拖动过程 panend：拖动结束 pancancel：拖动取消 panleft：向左拖动 panright：向右拖动 panup：向上拖动 pandown：向下拖动 swipe：快速滑动 swipeleft：向左滑动 swiperight：向右滑动 swipeup：向上滑动 swipedown：向下滑动 pinch：多触点捏放 pinchstart：多点触控开始 pinchmove：多点触控过程 pinchend：多点触控结束 pinchcancel：多点触控取消 pinchin：多点触控时两手指距离越来越近 pinchout：多点触控时两手指距离越来越远 rotate：旋转识别器 rotatestart：旋转开始 rotatemove：旋转过程 rotateend：旋转结束 rotatecancel：旋转取消 其中 pinch 和 rotate 默认是不可用的，想启用它们，需要加上： 12hammer.get(&apos;pinch&apos;).set(&#123; enable: true &#125;);hammer.get(&apos;rotate&apos;).set(&#123; enable: true &#125;); pan 和 swipe默认只识别水平方位的手势，若要允许识别器识别垂直方位或全部方位的 pan 和 swipe，可以这么写： 12hammer.get(&apos;pan&apos;).set(&#123; direction: Hammer.DIRECTION_ALL &#125;);hammer.get(&apos;swipe&apos;).set(&#123; direction: Hammer.DIRECTION_VERTICAL &#125;); 另建议加上如下meta标签，防止doubletap 或 pinch 缩放了viewport： 1&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1&quot;&gt; 事件对象每一个Hammer触发的事件都会收到一个包含了如下属性的事件对象： on(events, handler) 和 .off(events, [handler])监听由被添加的识别器触发的事件，或者移除那些绑定了的事件。参数中将事件通过空格隔开可处理多个事件 在jQuery基础上使用123456$(&quot;#element&quot;).hammer(&#123; // 对DOM进行一些初始化，这里可以加入一些参数 &#125;) .on(&quot;tap&quot;, function(ev) &#123; console.log(ev); &#125;);]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hexo博客配置]]></title>
+      <url>%2F2016%2F12%2F18%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. 快速开始创建新文章1$ hexo new "My New Post" 更多信息: Writing 启动服务器1$ hexo server 更多信息: Server 生成静态文件1$ hexo generate 更多信息: Generating 发布到远程服务器1$ hexo deploy 更多信息: Deployment]]></content>
+    </entry>
+
+    
+  
+  
+</search>
