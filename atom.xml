@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>秋意浓的小站</title>
-  <subtitle>前端攻城狮</subtitle>
+  <subtitle>Web developer</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-18T14:35:22.794Z</updated>
+  <updated>2016-12-21T03:18:57.060Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>王建秋</name>
+    <name>秋意浓</name>
     
   </author>
   
@@ -20,11 +20,12 @@
     <link href="http://yoursite.com/2016/12/18/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%8B%E5%8A%BF%E5%BA%93Hammer-js/"/>
     <id>http://yoursite.com/2016/12/18/移动端手势库Hammer-js/</id>
     <published>2016-12-18T14:25:49.000Z</published>
-    <updated>2016-12-18T14:35:22.794Z</updated>
+    <updated>2016-12-21T03:18:57.060Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://github.com/hammerjs/hammer.js/tree/master/" target="_blank" rel="external">Github</a></p>
 <p>Hammer.js是一个开源的，轻量级的javascript库，它可以在不需要依赖其他东西的情况下识别触摸，鼠标事件。</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>引入hammer.js到文件中，并创建一个新的实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var hammer = new Hammer(Element, Options);</div><div class="line">hammer.on(&apos;tap&apos;, function(ev) &#123;</div><div class="line">    console.log(ev);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>引入hammer.js到文件中，并创建一个新的实例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hammer = <span class="keyword">new</span> Hammer(Element, Options);</div><div class="line">hammer.on(<span class="string">'tap'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(ev);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>hammerjs内置多种手势识别器，包括 </p>
 <ul>
 <li>tap：轻触，与click相比有300ms的延迟</li>
@@ -66,22 +67,25 @@
 </li>
 </ul>
 <p>其中 pinch 和 rotate 默认是不可用的，想启用它们，需要加上：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hammer.get(&apos;pinch&apos;).set(&#123; enable: true &#125;);</div><div class="line">hammer.get(&apos;rotate&apos;).set(&#123; enable: true &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hammer.get(<span class="string">'pinch'</span>).set(&#123; <span class="attr">enable</span>: <span class="literal">true</span> &#125;);</div><div class="line">hammer.get(<span class="string">'rotate'</span>).set(&#123; <span class="attr">enable</span>: <span class="literal">true</span> &#125;);</div></pre></td></tr></table></figure>
 <p>pan 和 swipe默认只识别水平方位的手势，若要允许识别器识别垂直方位或全部方位的 pan 和 swipe，可以这么写：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hammer.get(&apos;pan&apos;).set(&#123; direction: Hammer.DIRECTION_ALL &#125;);</div><div class="line">hammer.get(&apos;swipe&apos;).set(&#123; direction: Hammer.DIRECTION_VERTICAL &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hammer.get(<span class="string">'pan'</span>).set(&#123; <span class="attr">direction</span>: Hammer.DIRECTION_ALL &#125;);</div><div class="line">hammer.get(<span class="string">'swipe'</span>).set(&#123; <span class="attr">direction</span>: Hammer.DIRECTION_VERTICAL &#125;);</div></pre></td></tr></table></figure>
 <p>另建议加上如下meta标签，防止doubletap 或 pinch 缩放了viewport：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;</div></pre></td></tr></table></figure>
-<h4 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h4><p>每一个Hammer触发的事件都会收到一个包含了如下属性的事件对象：<br><img src="http://img1.tuicool.com/BR7zMn2.png!web" alt="image"></p>
-<h4 id="on-events-handler-和-off-events-handler"><a href="#on-events-handler-和-off-events-handler" class="headerlink" title="on(events, handler) 和 .off(events, [handler])"></a>on(events, handler) 和 .off(events, [handler])</h4><p>监听由被添加的识别器触发的事件，或者移除那些绑定了的事件。参数中将事件通过空格隔开可处理多个事件</p>
-<h2 id="在jQuery基础上使用"><a href="#在jQuery基础上使用" class="headerlink" title="在jQuery基础上使用"></a>在jQuery基础上使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&quot;#element&quot;).hammer(&#123;</div><div class="line">    // 对DOM进行一些初始化，这里可以加入一些参数</div><div class="line">   &#125;)</div><div class="line">   .on(&quot;tap&quot;, function(ev) &#123;</div><div class="line">        console.log(ev);</div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>on(events, handler) 和 .off(events, [handler])</strong></p>
+<p>监听由被添加的识别器触发的事件，或者移除那些绑定了的事件。参数中将事件通过空格隔开可处理多个事件</p>
+<h2 id="在jQuery基础上使用"><a href="#在jQuery基础上使用" class="headerlink" title="在jQuery基础上使用"></a>在jQuery基础上使用</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">"#element"</span>).hammer(&#123;</div><div class="line">    <span class="comment">// 对DOM进行一些初始化，这里可以加入一些参数</span></div><div class="line">   &#125;)</div><div class="line">   .on(<span class="string">"tap"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(ev);</div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://github.com/hammerjs/hammer.js/tree/master/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Hammer.js是一个开源的，轻量级的javascr
+      &lt;p&gt;&lt;a href=&quot;https://github.com/hammerjs/hammer.js/tree/master/&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Hammer.js是一个开源的，轻量级的javascript库，它可以在不需要依赖其他东西的情况下识别触摸，鼠标事件。&lt;/p&gt;
+&lt;h2 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h2&gt;&lt;p&gt;引入hammer.js到文件中，并创建一个新的实例：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; hammer = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Hammer(Element, Options);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;hammer.on(&lt;span class=&quot;string&quot;&gt;&#39;tap&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;ev&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(ev);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
+    
+      <category term="Js" scheme="http://yoursite.com/categories/Js/"/>
     
     
       <category term="移动端" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
@@ -93,26 +97,28 @@
   </entry>
   
   <entry>
-    <title>Hexo博客配置</title>
+    <title>Hexo博客命令</title>
     <link href="http://yoursite.com/2016/12/18/hello-world/"/>
     <id>http://yoursite.com/2016/12/18/hello-world/</id>
     <published>2016-12-18T12:12:11.586Z</published>
-    <updated>2016-12-18T14:35:12.810Z</updated>
+    <updated>2016-12-21T03:37:29.932Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+    <content type="html"><![CDATA[<p>写在第一页，作为建立个人博客的第一篇文章，使用<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>搭建，记录日常使用的常用命令。<br>本博客使用品<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">Next</a>主题。精于心，简于形</p>
+<a id="more"></a>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new post <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<h3 id="创建新页面"><a href="#创建新页面" class="headerlink" title="创建新页面"></a>创建新页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new page <span class="string">"My New Page"</span></div></pre></td></tr></table></figure>
+<p><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="external">更多信息</a></p>
 <h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/server.html" target="_blank" rel="external">更多信息</a></p>
 <h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/generating.html" target="_blank" rel="external">更多信息</a></p>
 <h3 id="发布到远程服务器"><a href="#发布到远程服务器" class="headerlink" title="发布到远程服务器"></a>发布到远程服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>更多信息: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">更多信息</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;p&gt;写在第一页，作为建立个人博客的第一篇文章，使用&lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;搭建，记录日常使用的常用命令。&lt;br&gt;本博客使用品&lt;a href=&quot;http://theme-next.iissnan.com/&quot;&gt;Next&lt;/a&gt;主题。精于心，简于形&lt;/p&gt;
     
     </summary>
     
