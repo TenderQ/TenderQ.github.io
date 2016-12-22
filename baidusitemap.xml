@@ -3,6 +3,92 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2016/12/22/Promise%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</loc>
+    <lastmod>2016-12-22T09:58:10.189Z</lastmod>
+    <data>
+        <display>
+        <title>Promise实现原理</title>
+        <pubTime>2016-12-22T09:12:57.000Z</pubTime>
+        
+        <tag>Promise</tag>
+         
+        <tag>ES6</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/22/MongoDB%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2016-12-22T09:00:25.509Z</lastmod>
+    <data>
+        <display>
+        <title>MongoDB基本命令</title>
+        <pubTime>2016-12-22T08:22:10.000Z</pubTime>
+        
+        <tag>Mongodb</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/22/%E5%AE%9E%E6%97%B6%E9%80%9A%E8%AE%AF%E4%B9%8BSocket-io/</loc>
+    <lastmod>2016-12-22T08:19:50.976Z</lastmod>
+    <data>
+        <display>
+        <title>实时通讯之Socket.io</title>
+        <pubTime>2016-12-22T07:15:51.000Z</pubTime>
+        
+        <tag>实时通讯</tag>
+         
+        <tag>Socket</tag>
+         
+        <tag>http</tag>
+         
+         
+           
+             
+              <breadCrumb title="NodeJs" url="http://yoursite.com/categories/NodeJs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/21/D3%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-12-22T06:44:05.631Z</lastmod>
+    <data>
+        <display>
+        <title>D3入门总结</title>
+        <pubTime>2016-12-21T08:19:38.000Z</pubTime>
+        
+        <tag>D3</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2016/12/21/%E6%A8%A1%E5%9D%97module-exports%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E6%B3%95/</loc>
@@ -18,26 +104,6 @@
            
              
               <breadCrumb title="NodeJs" url="http://yoursite.com/categories/NodeJs/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/12/21/D3%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2016-12-21T08:34:22.787Z</lastmod>
-    <data>
-        <display>
-        <title>D3入门总结</title>
-        <pubTime>2016-12-21T08:19:38.000Z</pubTime>
-        
-        <tag>D3</tag>
-         
-         
-           
-             
-              <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
           
         </display>
     </data>
