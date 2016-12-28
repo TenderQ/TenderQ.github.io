@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-12-23T09:01:27.635Z</updated>
+  <updated>2016-12-28T09:13:08.658Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,204 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用artTemplate模板引擎开发网站</title>
+    <link href="http://yoursite.com/2016/12/28/%E4%BD%BF%E7%94%A8artTemplate%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%91%E7%BD%91%E7%AB%99/"/>
+    <id>http://yoursite.com/2016/12/28/使用artTemplate模板引擎开发网站/</id>
+    <published>2016-12-28T07:36:58.000Z</published>
+    <updated>2016-12-28T09:13:08.658Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="artTemplate"><a href="#artTemplate" class="headerlink" title="artTemplate"></a>artTemplate</h2><p>artTemplate是一款性能卓越的 javascript 模板引擎。它采用预编译方式让性能有了质的飞跃，并且充分利用 javascript 引擎特性，使得其性能无论在前端还是后端都有极其出色的表现。在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍（性能测试）。<br><img src="/2016/12/28/使用artTemplate模板引擎开发网站/test.png" alt="test.png" title=""><br>除了性能优势外，调试功能也值得一提。模板调试器可以精确定位到引发渲染错误的模板语句，解决了编写模板过程中无法调试的痛苦，让开发变得高效，也避免了因为单个模板出错导致整个应用崩溃的情况发生。</p>
+<p>下载： <a href="https://raw.githubusercontent.com/aui/artTemplate/master/dist/template.js" target="_blank" rel="external">简洁语法版</a>(推荐) 、 <a href="https://raw.githubusercontent.com/aui/artTemplate/master/dist/template-native.js" target="_blank" rel="external">原生语法版</a>  、  <a href="https://github.com/aui/artTemplate" target="_blank" rel="external">Github</a></p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ol>
+<li>性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（性能测试）</li>
+<li>支持运行时调试，可精确定位异常模板所在语句（演示）</li>
+<li>对 NodeJS Express 友好支持</li>
+<li>安全，默认对输出进行转义、在沙箱中运行编译后的代码（Node版本可以安全执行用户上传的模板）</li>
+<li>支持include语句，可在浏览器端实现按路径加载模板</li>
+<li>支持预编译，可将模板转换成为非常精简的 js 文件</li>
+<li>模板语句简洁，无需前缀引用数据</li>
+<li>支持所有流行的浏览器<a id="more"></a>
+</li>
+</ol>
+<h2 id="作为前端模版引擎"><a href="#作为前端模版引擎" class="headerlink" title="作为前端模版引擎"></a>作为前端模版引擎</h2><h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><h4 id="编写模版"><a href="#编写模版" class="headerlink" title="编写模版"></a>编写模版</h4><p>创建一个html文件，引入<a href="https://raw.githubusercontent.com/aui/artTemplate/master/dist/template.js" target="_blank" rel="external">template.js</a>，然后在正文中放置一个id为content的div标签，用来存放接下来根据模板动态生成的html内容。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"template.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">”content”</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>使用一个<code>type=&quot;text/html&quot;</code>的script标签存放模板：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"test"</span> <span class="attr">type</span>=<span class="string">"text/html"</span>&gt;</span><span class="xml"></span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123;title&#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">        &#123;&#123;each list as value i&#125;&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>索引 &#123;&#123;i + 1&#125;&#125; ：&#123;&#123;value&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        &#123;&#123;/each&#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="渲染模版"><a href="#渲染模版" class="headerlink" title="渲染模版"></a>渲染模版</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> data = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'标签'</span>,</div><div class="line">    <span class="attr">list</span>: [<span class="string">'文艺'</span>, <span class="string">'博客'</span>, <span class="string">'摄影'</span>, <span class="string">'电影'</span>, <span class="string">'民谣'</span>, <span class="string">'旅行'</span>, <span class="string">'吉他'</span>]</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> html = template.render(<span class="string">'test'</span>, data);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).innerHTML = html;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p><a href="http://aui.github.io/artTemplate/demo/basic.html" target="_blank" rel="external">演示</a></p>
+<h3 id="不转义HTML"><a href="#不转义HTML" class="headerlink" title="不转义HTML"></a>不转义HTML</h3><p>模板引擎默认数据包含的 HTML 字符进行转义以避免 XSS 漏洞，若不需要转义的地方可使用==。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">"test"</span> <span class="attr">type</span>=<span class="string">"text/html"</span>&gt;</span><span class="undefined"></span></div><div class="line">    &#123;&#123;#value&#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>若需要关闭默认转义，可以设置<code>template.isEscape = false</code>。<br><a href="http://aui.github.io/artTemplate/demo/no-escape.html" target="_blank" rel="external">演示</a></p>
+<h3 id="在js中存放模板"><a href="#在js中存放模板" class="headerlink" title="在js中存放模板"></a>在js中存放模板</h3><p><code>template.compile([id], source)</code>将返回一个渲染函数。其中 id 参数是可选的，如果使用了 id 参数，可以使用<code>template.render(id, data)</code>渲染模板。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="keyword">var</span> source = <span class="string">'&lt;ul&gt;'</span></div><div class="line">+    <span class="string">'&#123;&#123;each list as value i&#125;&#125;'</span></div><div class="line">+        <span class="string">'&lt;li&gt;索引 &#123;&#123;i + 1&#125;&#125; ：&#123;&#123;value&#125;&#125;&lt;/li&gt;'</span></div><div class="line">+    <span class="string">'&#123;&#123;/each&#125;&#125;'</span></div><div class="line">+ <span class="string">'&lt;/ul&gt;'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> render = template.compile(source);</div><div class="line"><span class="keyword">var</span> html = render(&#123;</div><div class="line">    <span class="attr">list</span>: [<span class="string">'摄影'</span>, <span class="string">'电影'</span>, <span class="string">'民谣'</span>, <span class="string">'旅行'</span>, <span class="string">'吉他'</span>]</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).innerHTML = html;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p><a href="http://aui.github.io/artTemplate/demo/compile.html" target="_blank" rel="external">演示</a></p>
+<h3 id="添加辅助方法"><a href="#添加辅助方法" class="headerlink" title="添加辅助方法"></a>添加辅助方法</h3><p><code>template.helper(name, callback)</code>辅助方法一般用来进行输出字符串或字符串替换。<br>例如编写一个显示当前时间的辅助方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">template.helper(<span class="string">'dateFormat'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">date, format</span>) </span>&#123;</div><div class="line">    <span class="comment">//..</span></div><div class="line">    <span class="keyword">return</span> value;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> data = &#123;</div><div class="line">	<span class="attr">time</span>: (<span class="keyword">new</span> <span class="built_in">Date</span>).toString(),</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> html = template(<span class="string">'test'</span>, data);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'content'</span>).innerHTML = html;</div></pre></td></tr></table></figure></p>
+<p>在模板中的使用方式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;time | dateFormat:'yyyy年 MM月 dd日 hh:mm:ss'&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>支持传入参数与嵌套使用：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;time | say:'cd' | ubb | link&#125;&#125;</div></pre></td></tr></table></figure></p>
+<p>注意：引擎不会对辅助方法输出的 HTML 字符进行转义。<br><a href="http://aui.github.io/artTemplate/demo/helper.html" target="_blank" rel="external">演示</a></p>
+<h2 id="作为后端引擎使用-配合node-js"><a href="#作为后端引擎使用-配合node-js" class="headerlink" title="作为后端引擎使用(配合node.js)"></a>作为后端引擎使用(配合node.js)</h2><h3 id="安装art-template"><a href="#安装art-template" class="headerlink" title="安装art-template"></a>安装art-template</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install art-template --save</div></pre></td></tr></table></figure>
+<h3 id="编写artTemplate模板"><a href="#编写artTemplate模板" class="headerlink" title="编写artTemplate模板"></a>编写artTemplate模板</h3><p>在工作区下，创建index.html，并将如下代码输入index.html，保存。其中<code>&lt;ul&gt;</code>标签中的内容，就是模板代码。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'main'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    &#123;&#123;each list&#125;&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>编号：&#123;&#123;$value.id&#125;&#125; &amp;nbsp;&amp;nbsp;姓名：&#123;&#123;$value.name&#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    &#123;&#123;/each&#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="渲染模板"><a href="#渲染模板" class="headerlink" title="渲染模板"></a>渲染模板</h3><p>还记得<code>template(id, data)</code>方法吗？这是在前端DOM环境下的用法。 其实在NodeJS环境下，它就相当于<code>template(filename, data)</code>了，可以将需要渲染的模板文件名当作路径传给它的第一个参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> os = <span class="built_in">require</span>(<span class="string">'os'</span>);</div><div class="line">http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> template = <span class="built_in">require</span>(<span class="string">'art-template'</span>);</div><div class="line">    <span class="comment">//数据</span></div><div class="line">    <span class="keyword">var</span> data = &#123;<span class="attr">list</span>: [&#123;<span class="attr">id</span>:<span class="string">'1'</span>, <span class="attr">name</span>:<span class="string">'张三'</span>&#125;, &#123;<span class="attr">id</span>:<span class="string">'2'</span>, <span class="attr">name</span>:<span class="string">'李四'</span>&#125;]&#125;;</div><div class="line">    <span class="comment">//渲染模板</span></div><div class="line">    <span class="keyword">var</span> html = template(<span class="string">'./index'</span>, data);</div><div class="line">    response.writeHead(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/html'</span>&#125;);</div><div class="line">    response.write(html);</div><div class="line">    response.end();</div><div class="line">&#125;).listen(<span class="number">3000</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"Server is running, listening on port 3000…"</span>);</div></pre></td></tr></table></figure></p>
+<p>配置base指定模板目录可以缩短模板的路径，并且能够避免include语句越级访问任意路径引发安全隐患。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">template.config(<span class="string">'base'</span>, __dirname);</div><div class="line"><span class="keyword">var</span> html = template(<span class="string">'index/main'</span>, data)</div></pre></td></tr></table></figure></p>
+<p>在Windows命令行下，进入工作区，执行<code>node server.js</code>，服务器就启动了。 此时在本地机器上使用浏览器访问<code>http://localhost:3000</code>将会看到Html输出了。</p>
+<h2 id="搭配express使用"><a href="#搭配express使用" class="headerlink" title="搭配express使用"></a>搭配express使用</h2><p>express框架是由javascript语言开发的，基于Node.js平台的，快速、开放、极简的web开发框架。</p>
+<h3 id="安装art-template-1"><a href="#安装art-template-1" class="headerlink" title="安装art-template"></a>安装art-template</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install art-template --save</div></pre></td></tr></table></figure>
+<h3 id="改造app-js"><a href="#改造app-js" class="headerlink" title="改造app.js"></a>改造app.js</h3><p>app.js是express的主要文件，这个文件里包含了指定模板引擎、指定视图文件默认路径的代码。需要将指定模板引擎的代码改为指定用art-template引擎。视图文件默认路径保持不变，因此无需改动。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//首先，引入artTemplate模块</span></div><div class="line"><span class="keyword">var</span> template = <span class="built_in">require</span>(<span class="string">'art-template'</span>);</div><div class="line"></div><div class="line"><span class="comment">//用art-template引擎替换默认的jade引擎</span></div><div class="line">template.config(<span class="string">'base'</span>, <span class="string">''</span>);</div><div class="line">template.config(<span class="string">'extname'</span>, <span class="string">'.html'</span>);</div><div class="line">app.engine(<span class="string">'.html'</span>, template.__express);</div><div class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'html'</span>);</div><div class="line"><span class="comment">//app.set('view engine', 'jade');</span></div></pre></td></tr></table></figure></p>
+<h3 id="编写artTemplate模板-1"><a href="#编写artTemplate模板-1" class="headerlink" title="编写artTemplate模板"></a>编写artTemplate模板</h3><p>进入express文件夹中的views子文件夹，创建index.html，并将如下代码输入index.html，并保存。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">'main'</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">        &#123;&#123;each list as value i&#125;&#125;</div><div class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>索引 &#123;&#123;i + 1&#125;&#125; ：&#123;&#123;value&#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">        &#123;&#123;/each&#125;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="渲染模版-1"><a href="#渲染模版-1" class="headerlink" title="渲染模版"></a>渲染模版</h3><p>express默认访问index路由。进入routes文件夹，打开router.js，增加渲染模板的代码，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">    <span class="comment">// 数据</span></div><div class="line">    <span class="keyword">var</span> data = &#123;</div><div class="line">        <span class="attr">title</span>: <span class="string">'标签'</span>,</div><div class="line">        <span class="attr">list</span>: [<span class="string">'文艺'</span>, <span class="string">'博客'</span>, <span class="string">'摄影'</span>, <span class="string">'电影'</span>, <span class="string">'民谣'</span>, <span class="string">'旅行'</span>, <span class="string">'吉他'</span>]</div><div class="line">    &#125;;</div><div class="line">    <span class="comment">// 渲染模板</span></div><div class="line">    res.render(<span class="string">'index'</span>, data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>代码中的<code>res.render(&#39;index&#39;, data)</code>调用，会调用artTemple模块中的<code>template.__express</code>方法，并传入模板文件名、数据。 <code>template.__express</code>方法是在app.js中注册给express框架的。</p>
+<h2 id="预编译工具"><a href="#预编译工具" class="headerlink" title="预编译工具"></a>预编译工具</h2><p>使用预编译工具可以让前端模版不再受浏览器的限制，支持如后端模版一样按文件放置、include 语句等特性，可以像后端一样书写前端模板！</p>
+<p>编译后的模板不再依赖前端模板引擎与后端，模板可以通过 SeaJS 或 RequireJS 等加载器进行异步加载，亦能利用它们成熟的打包合并工具进行上线前的优化，如合并与压缩。</p>
+<p>预编译工具：<a href="https://github.com/aui/tmodjs/" target="_blank" rel="external">TmodJS</a></p>
+<p>TmodJS 一经启动，就无需人工干预，每次模板创建与更新都会自动编译，引入一个 js 即可使用template(path)接口调用本地模板文件，直到正式上线都无需对代码进行任何修改，整个过程简单自然。</p>
+<h3 id="安装TmodJS"><a href="#安装TmodJS" class="headerlink" title="安装TmodJS"></a>安装TmodJS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g tmodjs</div></pre></td></tr></table></figure>
+<h3 id="编译模板"><a href="#编译模板" class="headerlink" title="编译模板"></a>编译模板</h3><p>只需要运行tmod这个命令即可，默认配置参数可以满足绝大多数项目。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tmod [模板目录] [配置参数]</div></pre></td></tr></table></figure></p>
+<p>模板目录必须是模板的根目录，若无参数则为默认使用当前工作目录，tmodjs 会监控模板目录修改，每次模板修改都会增量编译。</p>
+<h3 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h3><ul>
+<li><code>--debug</code> 输出调试版本</li>
+<li><code>--charset value</code> 定义模板编码，默认utf-8</li>
+<li><code>--output value</code> 定义输出目录，默认./build</li>
+<li><code>--type value</code> 定义输出模块格式，默认default，可选cmd、amd、commonjs</li>
+<li><code>--no-watch</code> 关闭模板目录监控</li>
+<li><code>--version</code> 显示版本号</li>
+<li><code>--help</code> 显示帮助信息</li>
+</ul>
+<p>配置参数将会保存在模板目录配置文件中，下次运行无需输入配置参数（–no-watch 与 –debug 除外）。</p>
+<p>示例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tmod ./tpl --output ./build</div></pre></td></tr></table></figure></p>
+<h3 id="使用模板"><a href="#使用模板" class="headerlink" title="使用模板"></a>使用模板</h3><p>根据编译的<code>type</code>的配置不同，会有两种不同使用方式：</p>
+<h4 id="使用默认的格式"><a href="#使用默认的格式" class="headerlink" title="使用默认的格式"></a>使用默认的格式</h4><p>TmodJS 默认将整个目录的模板压缩打包到一个名为 template.js 的脚本中，可直接在页面中使用它：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"tpl/build/template.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">	<span class="keyword">var</span> html = template(<span class="string">'news/list'</span>, _list);</div><div class="line">	<span class="built_in">document</span>.getElementById(<span class="string">'list'</span>).innerHTML = html;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>template.js 还支持 RequireJS、SeaJS、NodeJS 加载。<a href="http://aui.github.io/tmodjs/test/index.html" target="_blank" rel="external">示例</a></p>
+</blockquote>
+<h4 id="指定格式（amd-cmd-commonjs"><a href="#指定格式（amd-cmd-commonjs" class="headerlink" title="指定格式（amd / cmd / commonjs)"></a>指定格式（amd / cmd / commonjs)</h4><p>此时每个模板就是一个单独的模块，无需引用 template.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> render = <span class="built_in">require</span>(<span class="string">'./tpl/build/news/list'</span>);</div><div class="line"><span class="keyword">var</span> html = render(_list);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>   注意：模板路径不能包含模板后缀名</p>
+</blockquote>
+<h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><p><a href="https://github.com/aui/tmodjs/archive/master.zip" target="_blank" rel="external">TmodJS 源码包</a>中<code>test/tpl</code>是一个演示项目的前端模板目录，基于默认配置。切换到源码目录后，编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tmod <span class="built_in">test</span>/tpl</div></pre></td></tr></table></figure>
+<p>编译完毕后你可以在浏览器中打开 <a href="http://aui.github.io/tmodjs/test/index.html" target="_blank" rel="external">test/index.html</a> 查看如何使用编译后的模板。</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>TmodJS 的项目配置文件保存在模板目录的 package.json 文件中：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"template"</span>,</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">    <span class="attr">"dependencies"</span>: &#123;</div><div class="line">        <span class="attr">"tmodjs"</span>: <span class="string">"1.0.0"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"tmodjs-config"</span>: &#123;</div><div class="line">        <span class="attr">"output"</span>: <span class="string">"./build"</span>,</div><div class="line">        <span class="attr">"charset"</span>: <span class="string">"utf-8"</span>,</div><div class="line">        <span class="attr">"syntax"</span>: <span class="string">"simple"</span>,</div><div class="line">        <span class="attr">"helpers"</span>: <span class="literal">null</span>,</div><div class="line">        <span class="attr">"escape"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">"compress"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">"type"</span>: <span class="string">"default"</span>,</div><div class="line">        <span class="attr">"runtime"</span>: <span class="string">"template.js"</span>,</div><div class="line">        <span class="attr">"combo"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">"minify"</span>: <span class="literal">true</span>,</div><div class="line">        <span class="attr">"cache"</span>: <span class="literal">false</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>output</td>
+<td>String</td>
+<td><code>&quot;./build&quot;</code></td>
+<td>编译输出目录设置。如果设置为 false 则不输出</td>
+</tr>
+<tr>
+<td>charset</td>
+<td>String</td>
+<td><code>&quot;utf-8&quot;</code></td>
+<td>模板使用的编码（暂时只支持 utf-8）</td>
+</tr>
+<tr>
+<td>syntax</td>
+<td>String</td>
+<td><code>&quot;simple&quot;</code></td>
+<td>定义模板采用哪种语法。可选：<code>simple</code>、<code>native</code></td>
+</tr>
+<tr>
+<td>helpers</td>
+<td>String</td>
+<td><code>null</code></td>
+<td>自定义辅助方法路径</td>
+</tr>
+<tr>
+<td>escape</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否过滤 XSS。如果后台给出的数据已经进行了 XSS 过滤，就可以关闭模板的过滤以提升模板渲染效率</td>
+</tr>
+<tr>
+<td>compress</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否压缩 HTML 多余空白字符</td>
+</tr>
+<tr>
+<td>type</td>
+<td>String</td>
+<td><code>&quot;default&quot;</code></td>
+<td>输出的模块类型，可选：<code>default</code>、<code>cmd</code>、<code>amd</code>、<code>commonjs</code></td>
+</tr>
+<tr>
+<td>runtime</td>
+<td>String</td>
+<td><code>&quot;template.js&quot;</code></td>
+<td>设置输出的运行时名称</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>String</td>
+<td><code>null</code></td>
+<td>设置模块依赖的运行时路径（仅针对于非<code>default</code>的类型模块配置字段。如果不指定模块内部会自动使用相对 runtime 的路径）</td>
+</tr>
+<tr>
+<td>combo</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否合并模板（仅针对于 default 类型的模块）</td>
+</tr>
+<tr>
+<td>minify</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否输出为压缩的格式</td>
+</tr>
+<tr>
+<td>cache</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否开启编译缓存</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>Boolean</td>
+<td><code>true</code></td>
+<td>是否打印日志</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;artTemplate&quot;&gt;&lt;a href=&quot;#artTemplate&quot; class=&quot;headerlink&quot; title=&quot;artTemplate&quot;&gt;&lt;/a&gt;artTemplate&lt;/h2&gt;&lt;p&gt;artTemplate是一款性能卓越的 javascript 模板引擎。它采用预编译方式让性能有了质的飞跃，并且充分利用 javascript 引擎特性，使得其性能无论在前端还是后端都有极其出色的表现。在 chrome 下渲染效率测试中分别是知名引擎 Mustache 与 micro tmpl 的 25 、 32 倍（性能测试）。&lt;br&gt;&lt;img src=&quot;/2016/12/28/使用artTemplate模板引擎开发网站/test.png&quot; alt=&quot;test.png&quot; title=&quot;&quot;&gt;&lt;br&gt;除了性能优势外，调试功能也值得一提。模板调试器可以精确定位到引发渲染错误的模板语句，解决了编写模板过程中无法调试的痛苦，让开发变得高效，也避免了因为单个模板出错导致整个应用崩溃的情况发生。&lt;/p&gt;
+&lt;p&gt;下载： &lt;a href=&quot;https://raw.githubusercontent.com/aui/artTemplate/master/dist/template.js&quot;&gt;简洁语法版&lt;/a&gt;(推荐) 、 &lt;a href=&quot;https://raw.githubusercontent.com/aui/artTemplate/master/dist/template-native.js&quot;&gt;原生语法版&lt;/a&gt;  、  &lt;a href=&quot;https://github.com/aui/artTemplate&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;特性&quot;&gt;&lt;a href=&quot;#特性&quot; class=&quot;headerlink&quot; title=&quot;特性&quot;&gt;&lt;/a&gt;特性&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;性能卓越，执行速度通常是 Mustache 与 tmpl 的 20 多倍（性能测试）&lt;/li&gt;
+&lt;li&gt;支持运行时调试，可精确定位异常模板所在语句（演示）&lt;/li&gt;
+&lt;li&gt;对 NodeJS Express 友好支持&lt;/li&gt;
+&lt;li&gt;安全，默认对输出进行转义、在沙箱中运行编译后的代码（Node版本可以安全执行用户上传的模板）&lt;/li&gt;
+&lt;li&gt;支持include语句，可在浏览器端实现按路径加载模板&lt;/li&gt;
+&lt;li&gt;支持预编译，可将模板转换成为非常精简的 js 文件&lt;/li&gt;
+&lt;li&gt;模板语句简洁，无需前缀引用数据&lt;/li&gt;
+&lt;li&gt;支持所有流行的浏览器
+    
+    </summary>
+    
+      <category term="Js" scheme="http://yoursite.com/categories/Js/"/>
+    
+    
+      <category term="模版引擎" scheme="http://yoursite.com/tags/%E6%A8%A1%E7%89%88%E5%BC%95%E6%93%8E/"/>
+    
+      <category term="artTemplate" scheme="http://yoursite.com/tags/artTemplate/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Loader.css - CSS3实现加载动画</title>
     <link href="http://yoursite.com/2016/12/23/Loader-css-CSS3%E5%AE%9E%E7%8E%B0%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/"/>
     <id>http://yoursite.com/2016/12/23/Loader-css-CSS3实现加载动画/</id>
     <published>2016-12-23T08:32:42.000Z</published>
-    <updated>2016-12-23T09:01:27.635Z</updated>
+    <updated>2016-12-23T09:10:51.734Z</updated>
     
     <content type="html"><![CDATA[<p>当网页的页面大小较大，用户加载可能需要较长的时间，在这些情况下，我们一般会用到（加载）loading动画，提示于用户页面在加载中，这些UX常识我想很多设计师都懂，但做一个GIF动画有点麻烦，为了方便，为大家分享Loader.css，仅用CSS3就能实现一个loading动画效果。<br>Loader.css当前支持28个动画效果。<br><img src="/2016/12/23/Loader-css-CSS3实现加载动画/loaders-demo.gif" alt="loaders-demo.gif" title=""><br><a id="more"></a><br><img src="/2016/12/23/Loader-css-CSS3实现加载动画/loaders-demo-2.gif" alt="loaders-demo-2.gif" title=""><br><img src="/2016/12/23/Loader-css-CSS3实现加载动画/loaders-demo-3.gif" alt="loaders-demo-3.gif" title=""></p>
 <h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>Step 1: 引入 loaders.min.css 和 loaders.css.js，这个JS仅是为了简化动画的DIV标签，如果不加这个JS，那么你的动画就必须加上对应数量DIV标签才能正常显示动画，所以建议加上，这样语义化好会好些。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"loaders.min.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"loaders.css.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>

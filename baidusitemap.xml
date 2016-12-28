@@ -4,8 +4,31 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/12/28/%E4%BD%BF%E7%94%A8artTemplate%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%91%E7%BD%91%E7%AB%99/</loc>
+    <lastmod>2016-12-28T09:13:08.658Z</lastmod>
+    <data>
+        <display>
+        <title>使用artTemplate模板引擎开发网站</title>
+        <pubTime>2016-12-28T07:36:58.000Z</pubTime>
+        
+        <tag>模版引擎</tag>
+         
+        <tag>artTemplate</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://yoursite.com/2016/12/23/Loader-css-CSS3%E5%AE%9E%E7%8E%B0%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/</loc>
-    <lastmod>2016-12-23T09:01:27.635Z</lastmod>
+    <lastmod>2016-12-23T09:10:51.734Z</lastmod>
     <data>
         <display>
         <title>Loader.css - CSS3实现加载动画</title>
@@ -130,7 +153,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://yoursite.com/2016/12/21/%E6%A8%A1%E5%9D%97module-exports%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96%E6%96%B9%E6%B3%95/</loc>
