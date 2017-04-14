@@ -1,0 +1,1117 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="angular,gulp," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="UI-RouterUI-Router是Angular第三方开发用于管理UI与路由的模块，功能比Angular原生的ng-Route要强而且全，因此原生基本已经被其替代。 
+UI-Router是采用的是一种状态管理机制，“状态”可以继承，“状态”不禁包含url，还有views,controller等，以此来组织路由和控制界面UI的渲染，而不是单纯的改变路由。对于UI方面提供嵌套视图，可以一个页面嵌套">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular路由Ui-Router详解">
+<meta property="og:url" content="http://yoursite.com/2017/04/14/Angular路由Ui-Router详解/index.html">
+<meta property="og:site_name" content="秋意浓的小站">
+<meta property="og:description" content="UI-RouterUI-Router是Angular第三方开发用于管理UI与路由的模块，功能比Angular原生的ng-Route要强而且全，因此原生基本已经被其替代。 
+UI-Router是采用的是一种状态管理机制，“状态”可以继承，“状态”不禁包含url，还有views,controller等，以此来组织路由和控制界面UI的渲染，而不是单纯的改变路由。对于UI方面提供嵌套视图，可以一个页面嵌套">
+<meta property="og:updated_time" content="2017-04-14T06:39:19.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular路由Ui-Router详解">
+<meta name="twitter:description" content="UI-RouterUI-Router是Angular第三方开发用于管理UI与路由的模块，功能比Angular原生的ng-Route要强而且全，因此原生基本已经被其替代。 
+UI-Router是采用的是一种状态管理机制，“状态”可以继承，“状态”不禁包含url，还有views,controller等，以此来组织路由和控制界面UI的渲染，而不是单纯的改变路由。对于UI方面提供嵌套视图，可以一个页面嵌套">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Angular路由Ui-Router详解 | 秋意浓的小站 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?b6fd2dbfe3940c159521ed12b091de22";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">秋意浓的小站</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Web developer</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Angular路由Ui-Router详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-14T14:34:43+08:00" content="2017-04-14">
+              2017-04-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Angular/" itemprop="url" rel="index">
+                    <span itemprop="name">Angular</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/04/14/Angular路由Ui-Router详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/14/Angular路由Ui-Router详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/14/Angular路由Ui-Router详解/" class="leancloud_visitors" data-flag-title="Angular路由Ui-Router详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="UI-Router"><a href="#UI-Router" class="headerlink" title="UI-Router"></a>UI-Router</h2><p>UI-Router是Angular第三方开发用于管理UI与路由的模块，功能比Angular原生的ng-Route要强而且全，因此原生基本已经被其替代。 </p>
+<p>UI-Router是采用的是一种状态管理机制，“状态”可以继承，“状态”不禁包含url，还有<code>views</code>,<code>controller</code>等，以此来组织路由和控制界面UI的渲染，而不是单纯的改变路由。对于UI方面提供嵌套视图，可以一个页面嵌套多个视图，多视图再嵌套单个视图，每个视图可提供其特定的controller等针对管理，方便视图重用且功能精细，可以打造十分复杂的web应用。<br><a id="more"></a></p>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>导入模块<code>angular-ui-router.js</code>,可以通过bower包管理器或github等下载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;angular-ui-router/release/angular-ui-router.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>然后在ngApp中加入ui.router<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app = angular.module(<span class="string">'myApp'</span>, [<span class="string">'ui.router'</span>]);</div></pre></td></tr></table></figure></p>
+<p>然后再创建<code>login.html</code>用于嵌套，再在需要嵌套的页面配置<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// index.html url'/'</div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>再配置路由<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">app.config(<span class="function"><span class="keyword">function</span>(<span class="params">$stateProvider, $urlRouterProvider</span>) </span>&#123;</div><div class="line">    $urlRouterProvider.otherwise(<span class="string">'/'</span>);</div><div class="line">    $stateProvider</div><div class="line">        .state(<span class="string">'login'</span>, &#123;</div><div class="line">            <span class="attr">url</span>: <span class="string">'/'</span>,</div><div class="line">            <span class="attr">templateUrl</span>: <span class="string">'login.html'</span>,</div><div class="line">        &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>当进入主页它便自动将login.html嵌套到ui-view中。</p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="ui-view"><a href="#ui-view" class="headerlink" title="ui-view"></a>ui-view</h3><p>ui-view是用来告诉<code>ui-router</code>哪里需要嵌套模板,视图可以未命名或命名。在任何模板（或根html）中只能有一个未命名的视图。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">"chart"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>=<span class="string">"data"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在同一模板中具有多个视图时可以如下设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(&quot;home&quot;, &#123;</div><div class="line">    views: &#123;</div><div class="line">        &quot;&quot;: &#123;</div><div class="line">            template: &quot;&lt;h1&gt;HELLO!&lt;/h1&gt;&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;chart&quot;: &#123;</div><div class="line">            template: &quot;&lt;chart_thing/&gt;&quot;</div><div class="line">        &#125;,</div><div class="line">        &quot;data&quot;: &#123;</div><div class="line">            templateUrl: &apos;tplUrl.html&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;    </div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h3 id="autoscroll"><a href="#autoscroll" class="headerlink" title="autoscroll"></a>autoscroll</h3><p>在<code>ui-view</code>元素指令上使用的属性指令。它允许在填充视图时设置浏览器窗口的滚动行为。默认情况下，<code>$anchorScroll</code>被ui-router的自定义滚动服务<code>$uiViewScroll</code>覆盖。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ui-view</span> <span class="attr">autoscroll</span>[=<span class="string">'expression'</span>]/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>添加<code>autoscroll</code>属性到<code>ui-view</code>元素。（可选）使用表达式设置滚动是打开还是关闭。</p>
+<h3 id="ui-sref"><a href="#ui-sref" class="headerlink" title="ui-sref"></a>ui-sref</h3><p>绑定在<code>&lt;a&gt;</code>标签，用于状态转换，类似<code>&lt;a&gt;</code>的<code>href</code>属性。如果状态具有关联的URL，底层通过<code>$state.href()</code>方法自动生成和更新属性。 </p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><ul>
+<li>ui-sref=’stateName’ </li>
+<li>ui-sref=’stateName({param: value, param: value})’</li>
+</ul>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span> | <span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"contact in contacts"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"contacts.detail(&#123; id: contact.id &#125;)"</span>&gt;</span>&#123;&#123; contact.name &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>生成后的HTML<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/home"</span> <span class="attr">ui-sref</span>=<span class="string">"home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span> | <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/about"</span> <span class="attr">ui-sref</span>=<span class="string">"about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"contact in contacts"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/contacts/1"</span> <span class="attr">ui-sref</span>=<span class="string">"contacts.detail(&#123; id: contact.id &#125;)"</span>&gt;</span>Joe<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"contact in contacts"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/contacts/2"</span> <span class="attr">ui-sref</span>=<span class="string">"contacts.detail(&#123; id: contact.id &#125;)"</span>&gt;</span>Alice<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"contact in contacts"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/contacts/3"</span> <span class="attr">ui-sref</span>=<span class="string">"contacts.detail(&#123; id: contact.id &#125;)"</span>&gt;</span>Bob<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="ui-sref-active"><a href="#ui-sref-active" class="headerlink" title="ui-sref-active"></a>ui-sref-active</h3><p>与<code>ui-sref</code>一起使用的指令，在相关<code>ui-sref</code>指令的状态为活动时向元素添加类，并在非活动时删除它们。主要用例是通过使“活动”状态的菜单按钮显示不同，将其与非活动菜单项区分开，来简化依赖于<code>ui-sref</code>的导航菜单的特殊外观。</p>
+<h4 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h4><pre><code>ui-sref-active=&apos;class1 class2 class3&apos;  // 当相关ui-sref的状态为活动时，将类“class1”，“class2”和“class3”分别添加到指令元素，并且当其不活动时将其删除。
+</code></pre><h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">ui-sref-active</span>=<span class="string">"active"</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span> <span class="attr">ui-sref</span>=<span class="string">"app.user(&#123;user: 'zhangsan'&#125;)"</span>&gt;</span>@zhangsan<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- ... --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>当应用程序状态为“app.user”，并包含值为“zhangsan”的状态参数“user”时，生成的HTML将显示为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li ui-sref-active=&quot;active&quot; class=&quot;item active&quot;&gt;</div><div class="line">    &lt;a ui-sref=&quot;app.user(&#123;user: &apos;zhangsan&apos;&#125;)&quot; href=&quot;/users/zhangsan&quot;&gt;@zhangsan&lt;/a&gt;</div><div class="line">  &lt;/li&gt;</div><div class="line">  &lt;!-- ... --&gt;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="state"><a href="#state" class="headerlink" title="$state"></a>$state</h2><h3 id="state-go"><a href="#state-go" class="headerlink" title="$state.go()"></a>$state.go()</h3><p><code>$state.go</code>可以在JavaScript中转换状态（类似<code>ui-sref</code>在html中转换）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$state.go(to,params,options)</div></pre></td></tr></table></figure></p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ul>
+<li>to是stateName，必须，使用”^”或”.”表示相对状态； </li>
+<li>params可空，类型是对象,挂载在对应<code>$stateparams</code>,参数也可以通过状态机制继承； </li>
+<li>options可空，类型是对象，字段包括：<ul>
+<li>location:为boolean类型默认true,如果是true会更新地址中的url,flase不会，若为replace会更新并覆盖最后一此的记录。</li>
+<li>inherit为boolean类型默认true,如果是true会继承最近的的url中的参数。</li>
+<li>relative为对象默认<code>$state.$current</code>,当定义为相对路劲时，定义那个状态是相对的。</li>
+<li>notify为boolean类型默认为true, 当为true时广播<code>$stateChangeStart</code>和<br><code>$stateChangeSuccess</code>事件</li>
+<li>reload为boolean类型默认为false,如果是true会强制重载且一切一样。 </li>
+</ul>
+</li>
+</ul>
+<h3 id="state-reload"><a href="#state-reload" class="headerlink" title="$state.reload()"></a>$state.reload()</h3><p>强制重载当前状态，与<code>$state.go</code>的options内配制reload=true类似。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$state.reload(&apos;contact.detail&apos;); //强制刷新contact.detail状态</div></pre></td></tr></table></figure></p>
+<h3 id="state-includes-stateName-params"><a href="#state-includes-stateName-params" class="headerlink" title="$state.includes(stateName[, params])"></a>$state.includes(stateName[, params])</h3><p><code>$state.includes</code>方法用于判断当前激活状态是否是指定的状态或者是指定状态的子状态，返回时boolean值.<br>比如当前状态是<code>contacts.details.item</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$state.includes(<span class="string">"contacts"</span>); <span class="comment">// returns true</span></div><div class="line">$state.includes(<span class="string">"contacts.details"</span>); <span class="comment">// returns true</span></div><div class="line">$state.includes(<span class="string">"contacts.details.item"</span>); <span class="comment">// returns true</span></div><div class="line">$state.includes(<span class="string">"contacts.list"</span>); <span class="comment">// returns false</span></div><div class="line">$state.includes(<span class="string">"about"</span>); <span class="comment">// returns false</span></div></pre></td></tr></table></figure></p>
+<p><code>params</code>，假设当前状态<code>contacts.details.item.edit</code>，其url是<code>/contacts/1/address/edit</code>，为:id参数填充1,:item参数填充<code>address</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$state.includes(<span class="string">"contacts.detail"</span>, &#123;<span class="attr">id</span>: <span class="number">1</span>&#125;); <span class="comment">// returns true</span></div><div class="line">$state.includes(<span class="string">"contacts.detail.item"</span>, &#123;<span class="attr">item</span>:<span class="string">'address'</span>&#125;); <span class="comment">// returns true</span></div><div class="line">$state.includes(<span class="string">"contacts"</span>, &#123;<span class="attr">bogus</span>:<span class="string">'gnarly'</span>&#125;); <span class="comment">// returns false</span></div></pre></td></tr></table></figure></p>
+<h3 id="state-is-stateOrName-params"><a href="#state-is-stateOrName-params" class="headerlink" title="$state.is(stateOrName[, params])"></a>$state.is(stateOrName[, params])</h3><p>类似<code>$state.includes</code>，但它比较严格。<br>假设当前状态：<code>contact.details.item</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$state.is(&quot;contact.details.item&quot;); // returns true</div><div class="line">$state.is(contactDetailItemStateConfigObj); // returns true</div><div class="line">// 其他一切都会返回false</div></pre></td></tr></table></figure></p>
+<p>params:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$state.is(&quot;contacts.detail.item.edit&quot;, &#123;id: 1, item: &apos;address&apos;&#125;); // returns true</div><div class="line">// 其他一切都会返回false</div></pre></td></tr></table></figure></p>
+<h3 id="state-href-stateOrName-params-options"><a href="#state-href-stateOrName-params-options" class="headerlink" title="$state.href(stateOrName [, params] [, options])"></a>$state.href(stateOrName [, params] [, options])</h3><p>一个URL生成方法，返回已经填充指定参数的状态的编译后的链接。</p>
+<h4 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h4><ul>
+<li>stateOeName：string，你想要生成的url的状态或者状态对象。</li>
+<li>params：object，一个用于填充状态需要的参数的对象。</li>
+<li>options：可选配置对象。<ul>
+<li>lossy(当第一个参数url未被提供时是否继承导航的url进行构建href)</li>
+<li>inherit(是否继承当前url的参数)</li>
+<li>relative(当变化相对路径：如”^,定义的状态是相对的)</li>
+<li>absolute(是否生成绝对url)。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$state.href(&quot;about.person&quot;, &#123; person: &quot;bob&quot; &#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="state-get-stateName"><a href="#state-get-stateName" class="headerlink" title="$state.get([stateName])"></a>$state.get([stateName])</h3><p>通过将名称作为字符串传递来检索任何状态的配置对象的方法</p>
+<h3 id="state-current"><a href="#state-current" class="headerlink" title="$state.current"></a>$state.current</h3><p>返回状态对象的引用，用于访问自定义data,</p>
+<h3 id="关于-state在模板中使用"><a href="#关于-state在模板中使用" class="headerlink" title="关于$state在模板中使用"></a>关于$state在模板中使用</h3><blockquote>
+<p>注意：使用$State和$stateparams需要将其挂载到$rootscope</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">"myApp"</span>).run(<span class="function"><span class="keyword">function</span> (<span class="params">$rootScope, $state, $stateParams</span>) </span>&#123;</div><div class="line">    $rootScope.$state = $state;</div><div class="line">    $rootScope.$stateParams = $stateParams;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在，可以访问模板中的状态：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"nav"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-class</span>=<span class="string">"&#123; active: $state.includes('contacts') &#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/contacts"</span>&gt;</span>Contacts<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-class</span>=<span class="string">"&#123; active: $state.includes('about') &#125;"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="urlRouterProvider"><a href="#urlRouterProvider" class="headerlink" title="$urlRouterProvider"></a>$urlRouterProvider</h2><p>在<code>UI-Router</code>中，<code>$urlRouterProvider</code>负责监听<code>$location</code>.当<code>$location</code>变化的时候，<code>$urlRouterProvider</code>开始在一个规则的列表中一个个的查找，直到找到匹配的值。<code>$urlRouterProvider</code>用于在后端指定url的状态配置。所有的url被编译成<code>UrlMatcher</code>对象。</p>
+<h3 id="otherwise-rule"><a href="#otherwise-rule" class="headerlink" title="otherwise(rule)"></a>otherwise(rule)</h3><p>定义一个当请求的路径是无效路径时跳转的路径,处理无效路由。</p>
+<p><code>rule</code>：你想重定向的url路径或一个返回的网址路径的规则函数。函数传入两个参数：<code>$injector</code>和<code>$location</code>服务，而且必须返回一个string的url。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">angular.module(&apos;Demo&apos;,[&apos;ui.router&apos;])</div><div class="line">  .config([&quot;$urlRouterProvider&quot;,function()&#123;</div><div class="line">      $urlRouterProvider.otherwise(rule); // rule = 重定向的url</div><div class="line">&#125;])</div></pre></td></tr></table></figure>
+<h3 id="rule-rule"><a href="#rule-rule" class="headerlink" title="rule(rule)"></a>rule(rule)</h3><p>定义使用<code>$urlRouterProvider</code> 来匹配指定的URL的规则。</p>
+<p><code>rule</code>：将<code>$injector</code>和<code>$location</code>作为arguments传入的处理函数。用来返回一个string类型的url路径。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'Demo'</span>,[<span class="string">'ui.router'</span>])</div><div class="line">    .config([<span class="string">"$urlRouterProvider"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$urlRouterProvider</span>)</span>&#123;</div><div class="line">        $urlRouterProvider.rule(<span class="function"><span class="keyword">function</span> (<span class="params">$injector, $location</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> path = $location.path(),</div><div class="line">            normalized = path.toLowerCase();</div><div class="line">            <span class="keyword">if</span> (path !== normalized) &#123;</div><div class="line">               <span class="keyword">return</span> normalized;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;])</div></pre></td></tr></table></figure>
+<h3 id="when-what-handler"><a href="#when-what-handler" class="headerlink" title="when(what,handler)"></a>when(what,handler)</h3><p>为给定的URL匹配注册一个处理程序。</p>
+<p>参数：</p>
+<ul>
+<li><code>what</code>：需要重定向的传入路径，当前路径。</li>
+<li><code>handler</code>：需要重定向到的路径（或者是需要在路径被访问时运行的函数）</li>
+</ul>
+<p>handler是路径：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.config(<span class="function"><span class="keyword">function</span>(<span class="params">$urlRouterProvider</span>)</span>&#123;</div><div class="line">    <span class="comment">// when there is an empty route, redirect to /index   </span></div><div class="line">    $urlRouterProvider.when(<span class="string">''</span>, <span class="string">'/index'</span>);</div><div class="line"></div><div class="line">    <span class="comment">// You can also use regex for the match parameter</span></div><div class="line">    $urlRouterProvider.when(<span class="regexp">/aspx/i</span>, <span class="string">'/index'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>handler是函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'Demo'</span>, [<span class="string">'ui.router'</span>]);</div><div class="line">    .config([<span class="string">"$urlRouterProvider"</span>,<span class="function"><span class="keyword">function</span> (<span class="params">$urlRouterProvider</span>) </span>&#123;</div><div class="line">        $urlRouterProvider.when($state.url, <span class="function"><span class="keyword">function</span> (<span class="params">$match, $stateParams</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> ($state.$current.navigable !== state || !equalForKeys($match, $stateParams) &#123;</div><div class="line">                $state.transitionTo(state, $match, <span class="literal">false</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;]);</div></pre></td></tr></table></figure></p>
+<p>如果提供一个函数处理，路由匹配的时候，这个函数就会被调用，它可以返回下列三种之一的结果。</p>
+<ul>
+<li>false，这个回应告诉 $urlRouter 规则并不匹配，应该查找其它匹配的状态，在我们希望验证用户是否访问正确地址的时候很有用。</li>
+<li>字符串，$urlRouter 将其作为重定向目标。</li>
+<li>true 或者 undefined，函数已经处理了这个 url</li>
+</ul>
+<h2 id="stateProvider"><a href="#stateProvider" class="headerlink" title="$stateProvider"></a>$stateProvider</h2><p><code>$stateProvider</code>用于配制’状态’，可以是链式配制。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$stateProvider.state(stateName1, stateConfig1)</div><div class="line">              .state(stateName2,stateConfig2);</div></pre></td></tr></table></figure></p>
+<h3 id="state-stateName-stateConfig"><a href="#state-stateName-stateConfig" class="headerlink" title="state(stateName,stateConfig);"></a>state(stateName,stateConfig);</h3><p>注册一个状态，并给定其配置。</p>
+<h4 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h4><ul>
+<li>stateName是以个唯一的字符串，用于标记状态。 </li>
+<li><p>stateConfig用于管理状态的配制，object类型,配置具有以下各项属性：</p>
+<ul>
+<li>template： html模板字符串，或者一个返回html模板字符串的函数。</li>
+<li>templateUrl：模板路径的字符串，或者返回模板路径字符串的函数。</li>
+<li>templateProvider：function，返回html模板字符串或模板路径的服务。</li>
+<li>controller：string/function，新注册一个控制器函数或者一个已注册的控制器的名称字符串。</li>
+<li>controllerProvider：function，返回控制器或者控制器名称的服务</li>
+<li>controllerAs：string，控制器别名。</li>
+<li>parent：string/object，手动指定该状态的父级。</li>
+<li>resolve：object，将会被注入controller去执行的函数，<string,function>形式。它为状态的控制器提供了所需的依赖.这些依赖可以给状态对应的控制器提供所需要的内容或数据.</string,function></li>
+<li>url：string，当前状态的对应url。</li>
+<li>views：object，视图展示的配置。<string,object>形式。</string,object></li>
+<li>abstract：boolean，一个永远不会被激活的抽象的状态，但可以给其子级提供特性的继承。默认是true。</li>
+<li>onEnter：function，当进入一个状态后的回调函数。</li>
+<li>onExit：function，当退出一个状态后的回调函数。</li>
+<li><p>reloadOnSearch：boolean，如果为false，那么当一个search/query参数改变时不会触发相同的状态，用于当你修改$location.search()的时候不想重新加载页面。默认为true。</p>
+</li>
+<li><p>data：object，任意对象数据，用于自定义配置。继承父级状态的data属性。换句话说，通过原型继承可以达到添加一个data数据从而整个树结构都能获取到。</p>
+</li>
+<li>params：url里的参数值，通过它可以实现页面间的参数传递。</li>
+</ul>
+</li>
+</ul>
+<h3 id="decorator-name-func"><a href="#decorator-name-func" class="headerlink" title="decorator(name,func);"></a>decorator(name,func);</h3><p>通过内部的<code>$stateProvider</code>以扩展或者重写状态生成器。可用于添加<code>ui-router</code>的自定义功能，例如，基于状态名称推断<code>templateUrl</code>。</p>
+<blockquote>
+<p>警告：因为生成器的函数执行顺序的不确定，decorator不应该相互依赖。</p>
+</blockquote>
+<p>参数：</p>
+<ul>
+<li>name：需要修改的生成函数名称。</li>
+<li>func：可选，负责修改生成器函数的函数。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$stateProvider.decorator(<span class="string">'views'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">state, parent</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> result = &#123;&#125;,</div><div class="line">      views = parent(state);</div><div class="line">  angular.forEach(views, <span class="function"><span class="keyword">function</span> (<span class="params">config, name</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> autoName = (state.name + <span class="string">'.'</span> + name).replace(<span class="string">'.'</span>, <span class="string">'/'</span>);</div><div class="line">    config.templateUrl = config.templateUrl || <span class="string">'/partials/'</span> + autoName + <span class="string">'.html'</span>;</div><div class="line">    result[name] = config;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> result;</div><div class="line">&#125;);</div><div class="line">$stateProvider.state(<span class="string">'home'</span>, &#123;</div><div class="line">  <span class="attr">views</span>: &#123;</div><div class="line">    <span class="string">'contact.list'</span>: &#123; <span class="attr">controller</span>: <span class="string">'ListController'</span> &#125;,</div><div class="line">    <span class="string">'contact.item'</span>: &#123; <span class="attr">controller</span>: <span class="string">'ItemController'</span> &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">$state.go(<span class="string">'home'</span>);</div></pre></td></tr></table></figure>
+<p>以上代码修饰了<code>views</code>直接通过state的名称绑定完对应的页面模板。</p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="状态更改事件"><a href="#状态更改事件" class="headerlink" title="状态更改事件"></a>状态更改事件</h3><p>所有这些事件都从广播$rootScope。</p>
+<ul>
+<li>$stateChangeSuccess - 一旦状态转换完成就触发。</li>
+<li>$stateChangeStart - 当转换开始时触发。</li>
+<li>$stateNotFound - 当无法通过其名称找到状态时触发。</li>
+<li>$stateChangeError - 在转换期间发生错误时触发。</li>
+</ul>
+<h3 id="视图加载事件"><a href="#视图加载事件" class="headerlink" title="视图加载事件"></a>视图加载事件</h3><ul>
+<li>$viewContentLoading - 当视图开始加载时（在渲染DOM之前）每个视图触发一次。广播从$rootScope。</li>
+<li>$viewContentLoaded - 当视图加载时（在渲染DOM之后）每个视图触发一次。从视图发出$scope。</li>
+</ul>
+<h3 id="事件触发执行顺序"><a href="#事件触发执行顺序" class="headerlink" title="事件触发执行顺序"></a>事件触发执行顺序</h3><p>下面来理一下一个状态被激活的过程是怎样的:</p>
+<ol>
+<li>触发$stateChangeStart事件,如果使用event.preventDefault(),会阻止状态改变. 如果没有找到对应状态,会触发$stateNotFound事件,然后中断.</li>
+<li>触发$viewContentLoading事件.</li>
+<li>如果在切换状态的过程中出错(比如resolve出错),触发$stateChangeError事件,无出错跳过此步.</li>
+<li>触发上一个状态(若有)的onExit回调事件</li>
+<li>触发当前状态的onEnter回调事件</li>
+<li>触发$stateChangeSuccess事件</li>
+<li>触发$viewContentLoaded事件</li>
+</ol>
+<h2 id="ui-router的单视图："><a href="#ui-router的单视图：" class="headerlink" title="ui-router的单视图："></a>ui-router的单视图：</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">"Demo"</span> <span class="attr">ng-controller</span>=<span class="string">"testCtrl as ctrl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"app"</span>&gt;</span>app<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"test"</span>&gt;</span>test<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page1.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">this</span> is page <span class="number">1</span> <span class="keyword">for</span> app.</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page3.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">this</span> is page <span class="number">1</span> <span class="keyword">for</span> test.</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">angular.module('Demo', ['ui.router'])</div><div class="line">.config(["$stateProvider","$urlRouterProvider",routeConfig])</div><div class="line">.controller("testCtrl", angular.noop)</div><div class="line">function routeConfig($stateProvider,$urlRouterProvider)&#123;</div><div class="line">    $urlRouterProvider.otherwise("/app");</div><div class="line">    $stateProvider</div><div class="line">    .state("app",&#123;</div><div class="line">        url:"/app",</div><div class="line">        views:&#123;</div><div class="line">            "":&#123;</div><div class="line">                templateUrl:"'page1.html'"</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    .state("test",&#123;</div><div class="line">        url:"/test",</div><div class="line">        views:&#123;</div><div class="line">            "":&#123;</div><div class="line">                templateUrl:"'page3.html'"</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="ui-router的t多视图："><a href="#ui-router的t多视图：" class="headerlink" title="ui-router的t多视图："></a>ui-router的t多视图：</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>=<span class="string">"Demo"</span> <span class="attr">ng-controller</span>=<span class="string">"testCtrl as ctrl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"app.page1"</span>&gt;</span>app<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"test.page1(&#123;id:1&#125;)"</span>&gt;</span>test<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">ui-view</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'layout.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">      &lt;div ui-view=<span class="string">"nav@"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">      &lt;div ui-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'nav1.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">      &lt;ol&gt;</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"app.page1"</span>&gt;</span>app.page1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line">      &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"app.page2"</span>&gt;</span>app.page2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span></span></span></div><div class="line">      &lt;/<span class="attr">ol</span>&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'nav2.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">      &lt;ol&gt;</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"test.page1(&#123;id:1&#125;)"</span>&gt;</span>test.page1<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></div><div class="line">      &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">a</span> <span class="attr">ui-sref</span>=<span class="string">"test.page2"</span>&gt;</span>test.page2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span></span></span></div><div class="line">      &lt;/<span class="attr">ol</span>&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page1.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">this</span> is page <span class="number">1</span> <span class="keyword">for</span> app.</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page2.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">this</span> is page <span class="number">2</span> <span class="keyword">for</span> app.</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page3.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">this</span> is page <span class="number">1</span> <span class="keyword">for</span> test.</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/ng-template"</span> <span class="attr">id</span>=<span class="string">"'page4.html'"</span>&gt;</span><span class="javascript"></span></div><div class="line">  <span class="keyword">this</span> is page <span class="number">2</span> <span class="keyword">for</span> test.</div><div class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'Demo'</span>, [<span class="string">'ui.router'</span>])</div><div class="line">.config([<span class="string">"$stateProvider"</span>,<span class="string">"$urlRouterProvider"</span>,routeConfig])</div><div class="line">.controller(<span class="string">"testCtrl"</span>, angular.noop)</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">routeConfig</span>(<span class="params">$stateProvider,$urlRouterProvider</span>)</span>&#123;</div><div class="line">    $urlRouterProvider.otherwise(<span class="string">"/app/page1"</span>);</div><div class="line">    $stateProvider</div><div class="line">    .state(<span class="string">"app"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/app"</span>,</div><div class="line">          <span class="attr">views</span>:&#123;</div><div class="line">              <span class="string">""</span>:&#123;</div><div class="line">                  <span class="attr">templateUrl</span>:<span class="string">"'layout.html'"</span></div><div class="line">              &#125;,</div><div class="line">              <span class="string">"nav"</span>:&#123;</div><div class="line">                  <span class="attr">templateUrl</span>:<span class="string">"'nav1.html'"</span></div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">      &#125;)</div><div class="line">      .state(<span class="string">"app.page1"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/page1"</span>,</div><div class="line">          <span class="attr">templateUrl</span>:<span class="string">"'page1.html'"</span></div><div class="line">      &#125;)</div><div class="line">      .state(<span class="string">"app.page2"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/page2"</span>,</div><div class="line">          <span class="attr">templateUrl</span>:<span class="string">"'page2.html'"</span></div><div class="line">      &#125;)</div><div class="line">      .state(<span class="string">"test"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/test"</span>,</div><div class="line">          <span class="attr">views</span>:&#123;</div><div class="line">          <span class="string">""</span>:&#123;</div><div class="line">              <span class="attr">templateUrl</span>:<span class="string">"'layout.html'"</span></div><div class="line">          &#125;,</div><div class="line">           <span class="string">"nav"</span>:&#123;</div><div class="line">                  <span class="attr">templateUrl</span>:<span class="string">"'nav2.html'"</span></div><div class="line">              &#125;   </div><div class="line">      &#125;</div><div class="line">      &#125;)</div><div class="line">      .state(<span class="string">"test.page1"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/page1?:id"</span>,</div><div class="line">          <span class="attr">templateUrl</span>:<span class="string">"'page3.html'"</span>,</div><div class="line">          <span class="attr">controller</span>:[<span class="string">"$stateParams"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">$stateParams</span>)</span>&#123;</div><div class="line">              <span class="built_in">console</span>.log($stateParams.id);<span class="comment">// 1  这里实现传参</span></div><div class="line">          &#125;],</div><div class="line">          <span class="attr">params</span>:&#123;</div><div class="line">              <span class="attr">id</span>:<span class="literal">null</span></div><div class="line">          &#125;</div><div class="line">      &#125;)</div><div class="line">      .state(<span class="string">"test.page2"</span>,&#123;</div><div class="line">          <span class="attr">url</span>:<span class="string">"/page2"</span>,</div><div class="line">          <span class="attr">templateUrl</span>:<span class="string">"'page4.html'"</span></div><div class="line">      &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://github.com/angular-ui/ui-router/wiki/Quick-Reference" target="_blank" rel="external">https://github.com/angular-ui/ui-router/wiki/Quick-Reference</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag">#angular</a>
+          
+            <a href="/tags/gulp/" rel="tag">#gulp</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/14/Gulp构建前端自动化/" rel="next" title="Gulp构建前端自动化">
+                <i class="fa fa-chevron-left"></i> Gulp构建前端自动化
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/04/14/Angular路由Ui-Router详解/"
+     data-title="Angular路由Ui-Router详解"
+     data-content=""
+     data-url="http://yoursite.com/2017/04/14/Angular路由Ui-Router详解/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/14/Angular路由Ui-Router详解/"
+           data-title="Angular路由Ui-Router详解" data-url="http://yoursite.com/2017/04/14/Angular路由Ui-Router详解/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="秋意浓" />
+          <p class="site-author-name" itemprop="name">秋意浓</p>
+          <p class="site-description motion-element" itemprop="description">青春总是太匆匆，转眼已是秋意浓</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/TenderQ" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wang-jian-qiu-49" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/wang8088498" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/qiuyinong" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UI-Router"><span class="nav-number">1.</span> <span class="nav-text">UI-Router</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">3.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ui-view"><span class="nav-number">3.1.</span> <span class="nav-text">ui-view</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autoscroll"><span class="nav-number">3.2.</span> <span class="nav-text">autoscroll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ui-sref"><span class="nav-number">3.3.</span> <span class="nav-text">ui-sref</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用法"><span class="nav-number">3.3.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-number">3.3.2.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ui-sref-active"><span class="nav-number">3.4.</span> <span class="nav-text">ui-sref-active</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用法-1"><span class="nav-number">3.4.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子-1"><span class="nav-number">3.4.2.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#state"><span class="nav-number">4.</span> <span class="nav-text">$state</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-go"><span class="nav-number">4.1.</span> <span class="nav-text">$state.go()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数"><span class="nav-number">4.1.1.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-reload"><span class="nav-number">4.2.</span> <span class="nav-text">$state.reload()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-includes-stateName-params"><span class="nav-number">4.3.</span> <span class="nav-text">$state.includes(stateName[, params])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-is-stateOrName-params"><span class="nav-number">4.4.</span> <span class="nav-text">$state.is(stateOrName[, params])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-href-stateOrName-params-options"><span class="nav-number">4.5.</span> <span class="nav-text">$state.href(stateOrName [, params] [, options])</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数-1"><span class="nav-number">4.5.1.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-get-stateName"><span class="nav-number">4.6.</span> <span class="nav-text">$state.get([stateName])</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#state-current"><span class="nav-number">4.7.</span> <span class="nav-text">$state.current</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于-state在模板中使用"><span class="nav-number">4.8.</span> <span class="nav-text">关于$state在模板中使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#urlRouterProvider"><span class="nav-number">5.</span> <span class="nav-text">$urlRouterProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#otherwise-rule"><span class="nav-number">5.1.</span> <span class="nav-text">otherwise(rule)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rule-rule"><span class="nav-number">5.2.</span> <span class="nav-text">rule(rule)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#when-what-handler"><span class="nav-number">5.3.</span> <span class="nav-text">when(what,handler)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stateProvider"><span class="nav-number">6.</span> <span class="nav-text">$stateProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#state-stateName-stateConfig"><span class="nav-number">6.1.</span> <span class="nav-text">state(stateName,stateConfig);</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数-2"><span class="nav-number">6.1.1.</span> <span class="nav-text">参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#decorator-name-func"><span class="nav-number">6.2.</span> <span class="nav-text">decorator(name,func);</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件"><span class="nav-number">7.</span> <span class="nav-text">事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态更改事件"><span class="nav-number">7.1.</span> <span class="nav-text">状态更改事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图加载事件"><span class="nav-number">7.2.</span> <span class="nav-text">视图加载事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件触发执行顺序"><span class="nav-number">7.3.</span> <span class="nav-text">事件触发执行顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ui-router的单视图："><span class="nav-number">8.</span> <span class="nav-text">ui-router的单视图：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ui-router的t多视图："><span class="nav-number">9.</span> <span class="nav-text">ui-router的t多视图：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">10.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秋意浓</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tenderq"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("6mBF5W0SAaM74Bh7BqHtm0bc-gzGzoHsz", "xxPwnSs1HWTuJqOc7HQvSCE0");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

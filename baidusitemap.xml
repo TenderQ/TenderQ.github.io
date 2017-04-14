@@ -4,6 +4,85 @@
 
     
   <url>
+    <loc>http://yoursite.com/2017/04/14/Gulp%E6%9E%84%E5%BB%BA%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96/</loc>
+    <lastmod>2017-04-14T06:46:04.605Z</lastmod>
+    <data>
+        <display>
+        <title>Gulp构建前端自动化</title>
+        <pubTime>2017-04-14T06:16:40.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>前端自动化</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端构建工具" url="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/04/14/Angular%E8%B7%AF%E7%94%B1Ui-Router%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-04-14T06:39:19.094Z</lastmod>
+    <data>
+        <display>
+        <title>Angular路由Ui-Router详解</title>
+        <pubTime>2017-04-14T06:34:43.000Z</pubTime>
+        
+        <tag>angular</tag>
+         
+        <tag>gulp</tag>
+         
+         
+           
+             
+              <breadCrumb title="Angular" url="http://yoursite.com/categories/Angular/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/12/10/hello-world/</loc>
+    <lastmod>2017-04-14T06:14:47.422Z</lastmod>
+    <data>
+        <display>
+        <title>Hexo博客命令</title>
+        <pubTime>2016-12-10T08:22:10.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/04/14/JavaScript-Namespace%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2017-04-14T06:12:11.452Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript Namespace命名空间使用说明</title>
+        <pubTime>2017-04-14T06:10:14.000Z</pubTime>
+        
+        <tag>命名空间</tag>
+         
+         
+           
+             
+              <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/12/28/%E4%BD%BF%E7%94%A8artTemplate%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E5%BC%80%E5%8F%91%E7%BD%91%E7%AB%99/</loc>
     <lastmod>2016-12-28T09:13:08.658Z</lastmod>
     <data>
@@ -193,21 +272,6 @@
              
               <breadCrumb title="Js" url="http://yoursite.com/categories/Js/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2016/12/18/hello-world/</loc>
-    <lastmod>2016-12-21T03:37:29.932Z</lastmod>
-    <data>
-        <display>
-        <title>Hexo博客命令</title>
-        <pubTime>2016-12-18T12:12:11.586Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>

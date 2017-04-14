@@ -397,7 +397,7 @@
 <p><a href="https://github.com/amdjs/amdjs-api/wiki/require" target="_blank" rel="external">require API 介绍</a></p>
 <p>目前，实现AMD的库有<code>RequireJS</code>、<code>curl</code> 、<code>Dojo</code> 、<code>Nodules</code> 等。</p>
 <h2 id="CommonJS规范"><a href="#CommonJS规范" class="headerlink" title="CommonJS规范"></a>CommonJS规范</h2><p><code>CommonJS</code>是服务器端模块的规范，<code>Node.js</code>采用了这个规范。<code>Node.JS</code>首先采用了js模块化的概念。<br>根据CommonJS规范，一个单独的文件就是一个模块。每一个模块都是一个单独的作用域，也就是说，在该模块内部定义的变量，无法被其他模块读取，除非定义为global对象的属性。<br>输出模块变量的最好方法是使用<code>module.exports</code>对象。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> max = <span class="number">30</span>;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">for</span> (i -= <span class="number">1</span>; i++ &lt; max; ) &#123;</div><div class="line">    console.log(i);</div><div class="line">  &#125;</div><div class="line">  max *= 1.1;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> max = <span class="number">30</span>;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">for</span> (i -= <span class="number">1</span>; i++ <span class="xml"><span class="tag">&lt; <span class="attr">max</span>; ) &#123;</span></span></div><div class="line">    <span class="attr">console.log</span>(<span class="attr">i</span>);</div><div class="line">  &#125;</div><div class="line">  <span class="attr">max</span> *= <span class="string">1.1;</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>上面代码通过<code>module.exports</code>对象，定义了一个函数，该函数就是模块外部与内部通信的桥梁。</p>
 <p>加载模块使用<code>require</code>方法，该方法读取一个文件并执行，最后返回文件内部的<code>module.exports</code>对象。</p>
 <h2 id="AMD和CMD"><a href="#AMD和CMD" class="headerlink" title="AMD和CMD"></a>AMD和CMD</h2><p><code>CMD（Common Module Definition）</code>通用模块定义。该规范明确了模块的基本书写格式和基本交互规则。该规范是在国内发展出来的。AMD是依赖关系前置，CMD是按需加载。<br>在 CMD 规范中，一个模块就是一个文件。代码的书写格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">define(factory);</div></pre></td></tr></table></figure></p>
@@ -561,7 +561,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -569,7 +569,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -578,7 +578,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -663,8 +663,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
